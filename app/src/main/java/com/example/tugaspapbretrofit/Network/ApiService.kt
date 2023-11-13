@@ -8,6 +8,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
+
+// memanggil data dari server
 interface ApiService {
  @GET("data.php")
  fun getHeroData():Call<Hero>

@@ -7,6 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
     fun getInstance(): ApiService {
+        // mencatat log data yang diterima pada server
         val mHttpLoggingInterceptor = HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY)
 
@@ -14,11 +15,13 @@ object ApiClient {
             .Builder()
             .addInterceptor(mHttpLoggingInterceptor)
             .build()
+
+        // mendefinisikan API yang digunakan
         val builder = Retrofit.Builder()
-            .baseUrl("http://demo.lazday.com/rest-api-sample/")
+            .baseUrl("https://demo.lazday.com/rest-api-sample/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(mOkHttpClient)
             .build()
-        return builder.create(ApiService::class.java)
+        return builder.create(ApiService::class.java) // mengkonversi data dari JSON agar bisa dibaca aplikasi
     }
 }
